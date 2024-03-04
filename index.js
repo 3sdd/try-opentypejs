@@ -1,7 +1,18 @@
-import opentype from "opentype.js"
+import opentype from "opentype.js";
 
-function main(){
-
+async function main() {
+  opentype.load(
+    "./fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf",
+    function (err, font) {
+      if (err) {
+        console.error("Font could not be loaded: " + err);
+      } else {
+        // フォント名を取得
+        var fontName = font.names.fontFamily.en;
+        console.log("Font Name: " + fontName);
+      }
+    }
+  );
 }
 
-main()
+await main();
