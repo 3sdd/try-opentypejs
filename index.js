@@ -12,6 +12,16 @@ async function main() {
   console.log(font.names.version);
   console.log(font.names.description);
 
+  const supportedCharacters = [];
+  for (let i = 0; i < font.glyphs.length; i++) {
+    var glyph = font.glyphs.get(i);
+    if (glyph.unicode) {
+      supportedCharacters.push(String.fromCharCode(glyph.unicode));
+    }
+    //TODO: unicode undefinedの場合
+  }
+  console.log(supportedCharacters);
+
   // Font.getPath(text, x, y, fontSize, options)
   // Font.draw(ctx, text, x, y, fontSize, options)
   // Font.drawPoints(ctx, text, x, y, fontSize, options)
