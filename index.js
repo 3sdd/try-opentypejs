@@ -1,18 +1,12 @@
-import opentype from "opentype.js";
+import { parse } from "opentype.js";
+import fs from "node:fs";
 
 async function main() {
-  opentype.load(
-    "./fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf",
-    function (err, font) {
-      if (err) {
-        console.error("Font could not be loaded: " + err);
-      } else {
-        // フォント名を取得
-        var fontName = font.names.fontFamily.en;
-        console.log("Font Name: " + fontName);
-      }
-    }
+  const fontData = await fs.promises.readFile(
+    "./fonts/LanobePOPv2/LightNovelPOPv2.otf"
   );
+  const font = parse(fontData.buffer);
+  console.log(font.hasChar("鑠"));
 }
 
 await main();
